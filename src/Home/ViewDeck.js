@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { readDeck } from "../utils/api";
+import { Link, useParams, useHistory } from "react-router-dom";
+import { readDeck, deleteDeck } from "../utils/api";
 import Cards from "./Cards";
 
 function ViewDeck() {
   const { deckId } = useParams();
   const [deck, setDeck] = useState({});
   const { name, description, cards } = deck;
+  const history = useHistory();
 
   useEffect(() => {
     async function getDeck() {
@@ -15,6 +16,17 @@ function ViewDeck() {
     }
     getDeck();
   }, [setDeck, deckId]);
+
+  const handleDelete = async (deckId) => {
+    const result = window.confirm(
+      "Delete this deck?\n\nYou will not be able to recover it."
+    );
+    if (result) {
+      await deleteDeck(deckId);
+      history.push("/");
+      history.go(0);
+    }
+  };
 
   return (
     <>
@@ -48,7 +60,12 @@ function ViewDeck() {
       >
         + Add Cards
       </Link>
-      <button className="btn btn-danger float-right">Delete</button>
+      <button
+        className="btn btn-danger float-right"
+        onClick={() => handleDelete(deckId)}
+      >
+        Delete
+      </button>
 
       <h1 className="my-5">Cards</h1>
       {cards && <Cards cards={cards} />}

@@ -16,8 +16,8 @@
       "id": 3
     },
     {
-      "name": "Burger1",
-      "description": "Burger1",
+      "name": "1",
+      "description": "1",
       "id": 4
     }
   ],
@@ -97,12 +97,6 @@
       "back": "12345",
       "deckId": 1,
       "id": 18
-    },
-    {
-      "front": "c",
-      "back": "c",
-      "deckId": 1,
-      "id": 19
     }
   ]
 }

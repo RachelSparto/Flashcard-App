@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { createDeck, readDeck, updateDeck } from "../utils/api";
+import { createDeck, readDeck, updateDeck, listDecks } from "../utils/api";
 
 function DeckForm() {
+  const [decks, setDecks] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [currentDeck, setCurrentDeck] = useState({});
@@ -34,6 +35,16 @@ function DeckForm() {
     }
   }, [deckId]);
 
+  useEffect(() => {
+    async function getDecks() {
+      const response = await listDecks();
+      setDecks(response);
+    }
+    getDecks();
+  }, [setDecks]);
+
+  const toSwitcher = deckId ? `/decks/${deckId}` : "/";
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (deckId) {
@@ -41,7 +52,7 @@ function DeckForm() {
       history.push(`/decks/${currentDeck.id}`);
     } else {
       await createDeck({ name, description });
-      history.push(`${currentDeck.length + 1}`);
+      history.push(`/decks/${decks.length + 1}`);
     }
   };
 
@@ -67,15 +78,9 @@ function DeckForm() {
           ></textarea>
         </label>
         <div className="my-3">
-          {deckId ? (
-            <Link to={`/decks/${deckId}`} className="btn btn-secondary mr-3">
-              Cancel
-            </Link>
-          ) : (
-            <Link to="/" className="btn btn-secondary mr-3">
-              Cancel
-            </Link>
-          )}
+          <Link to={toSwitcher} className="btn btn-secondary mr-3">
+            Cancel
+          </Link>
           <button className="btn btn-primary" type="submit">
             Submit
           </button>
