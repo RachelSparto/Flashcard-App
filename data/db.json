@@ -9,14 +9,58 @@
       "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
+    },
+    {
+      "name": "pizza",
+      "description": "pizza ",
+      "id": 3
+    },
+    {
+      "name": "Burger1",
+      "description": "Burger1",
+      "id": 4
     }
   ],
   "cards": [
     {
       "id": 1,
-      "front": "Differentiate between Real DOM and Virtual DOM.",
-      "back": "Virtual DOM updates are faster but do not directly update the HTML",
-      "deckId": 1
+      "name": "Rendering in React",
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. ",
+      "cards": [
+        {
+          "id": 2,
+          "front": "How do you modify the state of a different React component?",
+          "back": "Not at all! State is visible to the component only.",
+          "deckId": 1
+        },
+        {
+          "id": 3,
+          "front": "How do you pass data 'down' to a React child component?",
+          "back": "As properties or props",
+          "deckId": 1
+        },
+        {
+          "cards": [],
+          "front": "b",
+          "back": "b",
+          "deckId": 1,
+          "id": 7
+        },
+        {
+          "front": "",
+          "back": "",
+          "deckId": 1,
+          "id": 8
+        },
+        {
+          "front": "stuff",
+          "back": "stuff",
+          "deckId": 1,
+          "id": 9
+        }
+      ],
+      "front": "",
+      "back": ""
     },
     {
       "id": 2,
@@ -43,11 +87,22 @@
       "id": 5
     },
     {
-      "cards": [],
-      "front": "b",
-      "back": "b",
+      "front": "pizza",
+      "back": "pizza",
       "deckId": 1,
-      "id": 7
+      "id": 8
+    },
+    {
+      "front": "12345",
+      "back": "12345",
+      "deckId": 1,
+      "id": 18
+    },
+    {
+      "front": "c",
+      "back": "c",
+      "deckId": 1,
+      "id": 19
     }
   ]
 }
