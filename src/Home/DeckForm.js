@@ -11,19 +11,12 @@ function DeckForm() {
   const history = useHistory();
 
   const handleNameChange = (event) => {
-    event.preventDefault();
     setName(event.target.value);
   };
 
   const handleDescriptionChange = (event) => {
-    event.preventDefault();
     setDescription(event.target.value);
   };
-
-  useEffect(() => {
-    setName(currentDeck.name);
-    setDescription(currentDeck.description);
-  }, [setName, setDescription, currentDeck.name, currentDeck.description]);
 
   useEffect(() => {
     async function getDeck() {
@@ -43,6 +36,20 @@ function DeckForm() {
     getDecks();
   }, [setDecks]);
 
+  useEffect(() => {
+    if (deckId && Object.keys(currentDeck).length > 0) {
+      setName(currentDeck.name);
+      setDescription(currentDeck.description);
+    }
+  }, [
+    setName,
+    setDescription,
+    currentDeck.name,
+    currentDeck.description,
+    deckId,
+    currentDeck,
+  ]);
+
   const toSwitcher = deckId ? `/decks/${deckId}` : "/";
 
   const handleSubmit = async (event) => {
@@ -60,16 +67,17 @@ function DeckForm() {
     <>
       <form className="d-flex flex-column" onSubmit={handleSubmit}>
         <label className="font-weight-bold" name="front" id="front">
-          Name:
-          <textarea
+          Name
+          <input
+            type="text"
             style={{ width: "100%" }}
             value={name}
             placeholder="Deck Name"
             onChange={handleNameChange}
-          ></textarea>
+          ></input>
         </label>
         <label className="font-weight-bold" name="back" id="back">
-          Description:
+          Description
           <textarea
             style={{ width: "100%" }}
             value={description}

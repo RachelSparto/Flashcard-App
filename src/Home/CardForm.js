@@ -50,7 +50,7 @@ function CardForm() {
     <>
       <form className="d-flex flex-column" onSubmit={handleSubmit}>
         <label className="font-weight-bold" name="front" id="front">
-          Front:
+          Front
           <textarea
             style={{ width: "100%" }}
             value={front}
@@ -59,7 +59,7 @@ function CardForm() {
           ></textarea>
         </label>
         <label className="font-weight-bold" name="back" id="back">
-          Back:
+          Back
           <textarea
             style={{ width: "100%" }}
             value={back}

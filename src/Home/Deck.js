@@ -29,8 +29,13 @@ function Deck() {
     decks.map((deck, index) => {
       return (
         <div key={index} className="card my-5">
-          <h5 className="card-header">{deck.name}</h5>
           <div className="card-body">
+            <div className="row">
+              <h5 className="card-title col float-left">{deck.name}</h5>
+              <h6 className="mb-2 text-muted float-right">
+                {deck.cards ? deck.cards.length : 0} cards
+              </h6>
+            </div>
             <p className="card-text">{deck.description}</p>
             <Link to={`/decks/${deck.id}`}>
               <button className="btn btn-secondary mx-3">View</button>
